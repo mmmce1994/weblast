@@ -1,0 +1,72 @@
+{% extends "admin/base.html" %}
+
+{% block page-title %}Crypto Currencies{% endblock %}
+
+{% block menu %}
+    <li><a href="/admin" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+    <li><a href="/admin/list" class="active"><i class="lnr lnr-linearicons"></i> <span>Crypto Currencies</span></a></li>
+    <li><a href="/logout" class=""><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <!-- TABLE STRIPED -->
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">list of Coins</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Name of Coin</th>
+                        <th>Owner</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for cc in ccList %}
+
+                        <tr>
+                            <td>{{ cc.id }}</td>
+                            <td>{{ cc.coin }}</td>
+                            <td>{{ cc.owner }}</td>
+                            <td>{{ cc.created_at }}</td>
+                            <td><span class="label label-success">Finished</span></td>
+                        </tr>
+
+                    {% endfor %}
+
+
+
+                    <tr>
+                        <td>1</td>
+                        <td>Utabit</td>
+                        <td>AriaTech</td>
+                        <td>10 SEP, 10:53 PM</td>
+                        <td><span class="label label-success">Finished</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Bonab</td>
+                        <td>3 Goolakh Team</td>
+                        <td>3 Hours ago</td>
+                        <td>Step 4 : Building Windows Wallet ...</td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END TABLE STRIPED -->
+
+
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,178 @@
+{% extends "admin/base.html" %}
+
+{% block page-title %}new Crypto Currency{% endblock %}
+
+{% block menu %}
+    <li><a href="/admin" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+    <li><a href="/admin/list" class=""><i class="lnr lnr-linearicons"></i> <span>Crypto Currencies</span></a></li>
+    <li><a href="/logout" class=""><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+
+        <!-- INPUTS -->
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Fill and Submit this form !</h3>
+            </div>
+            <div class="panel-body">
+
+
+                <div class="container" align="center">
+
+
+                    <form action="" method="post" id="CCGGForm">{% csrf_token %}
+
+                        <div class="row">
+                            <div class="input-group">
+                                <span class="input-group-addon">pszTimeStamp</span>
+                                <input id="msg" type="text" class="form-control" name="pszTimestamp" placeholder="">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Max Money</span>
+                                    <input id="msg" type="text" class="form-control" name="maxMoney" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon">nSubsidyHalving</span>
+                                    <input id="msg" type="text" class="form-control" name="nSubsidyHalving"
+                                           placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Port</span>
+                                    <input id="msg" type="text" class="form-control" name="port" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <span class="input-group-addon">nTime</span>
+                                    <input id="msg" type="text" class="form-control" name="nTime" placeholder="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">nBits</span>
+                                    <input id="msg" type="text" class="form-control" name="nBits" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">DnsSeed</span>
+                                    <input id="msg" type="text" class="form-control" name="dnsSeed" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">cAmountnSubsidy</span>
+                                    <input id="msg" type="text" class="form-control" name="cAmountSubsidy"
+                                           placeholder="">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr/>
+
+                        <h3>Full Nodes</h3>
+
+
+                        <table class="table table-hover" id="full_node_table">
+                            <thead>
+                            <tr>
+                                <th>IPV6</th>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+
+                            <tr>
+
+                                <td>
+
+                                    <div class="col-lg-11">
+                                        <input id="ip" type="text" class="form-control" name="ip_field" placeholder="">
+                                    </div>
+
+                                    <div class="col-lg-1">
+                                        <button type="button" class="btn btn-success btn-add" id="add_fullnode"
+                                                onclick="add_full_node();">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+
+                                    </div>
+
+                                </td>
+
+
+                            </tr>
+
+                            </tbody>
+
+
+                        </table>
+
+                        <button id="submit" type="submit" class="btn btn-info">Submit and eat bonab!</button>
+
+
+                    </form>
+
+                </div>
+
+
+            </div>
+        </div>
+        <!-- END INPUTS -->
+
+
+    </div>
+
+    <script>
+        function add_full_node() {
+
+            if (document.getElementById("ip").value) {
+                var table = document.getElementById("full_node_table");
+                var ip = document.getElementById("ip");
+                var form = document.getElementById("CCGGForm");
+                var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr").length;
+                var row = table.insertRow(2);
+                var cell1 = row.insertCell(0);
+                cell1.innerHTML = ip.value;
+
+                var div = document.createElement('div');
+                div.className = 'row';
+                div.innerHTML = "<input id='ip' type='hidden'  name='fullNode" + rows + "'" + " value='" + ip.value + "'>";
+                form.appendChild(div);
+
+                ip.value = "";
+
+
+            }
+
+        }
+    </script>
+
+
+{% endblock %}
+
